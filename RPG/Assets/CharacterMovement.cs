@@ -16,19 +16,36 @@ public class CharacterMovement : MonoBehaviour
 
     public Collider Ground;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    // public Vector2 lol;
+   // Vector3 center = Collider.
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        grounded = true;
+        Collider2D collider = collision.collider;
+
+
+        Vector2 contactPoint = collision.GetContact(1).point;
+        Vector2 temp = collider.bounds.center;
+
+        Vector2 center;
+        center = new Vector2(contactPoint.x + temp.x, contactPoint.y + temp.y);
+
+        if (center.x > contactPoint.x)
+        {
+            grounded = true;
+        }
+        Debug.Log(temp);
+        Debug.Log("contactPoint " + contactPoint);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         grounded = false;
     }
 
     void Start()
     {
-        
+        // lol = new Vector2(1f, 1f);
     }
 
     // Update is called once per frame
@@ -49,6 +66,11 @@ public class CharacterMovement : MonoBehaviour
             Player.transform.Translate(Vector3.up * Time.deltaTime * PlayerJumpHeight);
             grounded = false;
         }
+
+        // Debug.Log(Vector2)
+
+        // Wir wollen die Bewungeg des Characters nur mit Vektoren machen
+        // damit dieser nichtmehr in die Tilemap buggt.
 
     }
 }
