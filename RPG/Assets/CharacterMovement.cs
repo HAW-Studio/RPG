@@ -5,10 +5,14 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
 
-    public float PlayerSpeed = 5f;
+    public Rigidbody2D PlayerRB;
+
+    public float PlayerSpeed = 300f;
+
+    public float PlayerDownStep = 5f;
     // Start is called before the first frame update
 
-    public float PlayerJumpHeight = 20f;
+    public float PlayerJumpHeight = 2500f;
 
     public GameObject Player;
 
@@ -53,24 +57,26 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetKey("d"))
         {
-            Player.transform.Translate(Vector3.right * Time.deltaTime * PlayerSpeed);
+            PlayerRB.AddForce(Vector3.right * Time.deltaTime * PlayerSpeed);
         }
 
         if (Input.GetKey("a")) 
         {
-            Player.transform.Translate(Vector3.left * Time.deltaTime * PlayerSpeed);
+            PlayerRB.AddForce(Vector3.left * Time.deltaTime * PlayerSpeed);
         }
 
         if (Input.GetKeyDown("space") && grounded)
         {
-            Player.transform.Translate(Vector3.up * Time.deltaTime * PlayerJumpHeight);
+            PlayerRB.AddForce(Vector3.up * Time.deltaTime * PlayerJumpHeight);
             grounded = false;
         }
 
+        if (Input.GetKey("s"))
+        {
+            Player.transform.Translate(Vector3.down * Time.deltaTime * PlayerDownStep);
+        }
         // Debug.Log(Vector2)
 
-        // Wir wollen die Bewungeg des Characters nur mit Vektoren machen
-        // damit dieser nichtmehr in die Tilemap buggt.
-
+        // Jump mit dem Rigibody ist weird
     }
 }

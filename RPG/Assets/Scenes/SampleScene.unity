@@ -802,15 +802,6 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
-  - first: {x: -7, y: -1, z: 0}
-    second:
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
   - first: {x: 6, y: -1, z: 0}
     second:
       m_TileIndex: 1
@@ -860,15 +851,6 @@ Tilemap:
     second:
       m_TileIndex: 15
       m_TileSpriteIndex: 15
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
-  - first: {x: -7, y: 0, z: 0}
-    second:
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -1322,7 +1304,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 9682b7e3b7bb911458a5ae5b35fcc87c, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 92dc832f8cece1a4eaf6beaf7d2cc2c2, type: 2}
-  - m_RefCount: 5
+  - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 6b7a0c9138251c24089e63d96f41efbd, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 492af54ae2c1ac74bb3aeacce42347b9, type: 2}
@@ -1359,7 +1341,7 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: f475812a9f249194e9e722d82aa1894e, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300022, guid: f475812a9f249194e9e722d82aa1894e, type: 3}
-  - m_RefCount: 5
+  - m_RefCount: 3
     m_Data: {fileID: 21300050, guid: f475812a9f249194e9e722d82aa1894e, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300042, guid: f475812a9f249194e9e722d82aa1894e, type: 3}
@@ -1382,7 +1364,7 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 21300068, guid: f475812a9f249194e9e722d82aa1894e, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 122
+  - m_RefCount: 120
     m_Data:
       e00: 1
       e01: 0
@@ -1401,7 +1383,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 122
+  - m_RefCount: 120
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1475,8 +1457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fbb552c09b7d2409cee24f7a0f209a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 5
-  PlayerJumpHeight: 20
+  PlayerRB: {fileID: 492885365}
+  PlayerSpeed: 300
+  PlayerDownStep: 5
+  PlayerJumpHeight: 2500
   Player: {fileID: 492885363}
   grounded: 0
   Ground: {fileID: 0}
