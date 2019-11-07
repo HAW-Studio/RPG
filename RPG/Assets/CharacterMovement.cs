@@ -64,6 +64,7 @@ public class CharacterMovement : MonoBehaviour
             //Rechts
         {
             PlayerRB.AddForce(Vector3.right * Time.deltaTime * PlayerSpeed);
+
             if (movingLeft == false)
             {
                 movingRight = true;
