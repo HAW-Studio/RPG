@@ -22,7 +22,8 @@ public class CharacterMovement : MonoBehaviour
 
 
     //Collider
-    public Collider Ground;
+    // public Collider Ground;
+    public EdgeCollider2D endgeGround;
 
     //GameObjects
     public GameObject Player;
@@ -41,8 +42,8 @@ public class CharacterMovement : MonoBehaviour
         {
             grounded = true;
         }
-        Debug.Log(temp);
-        Debug.Log("contactPoint " + contactPoint);
+        //Debug.Log(temp);
+        //Debug.Log("contactPoint " + contactPoint);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -52,18 +53,17 @@ public class CharacterMovement : MonoBehaviour
 
     void Start()
     {
-        // lol = new Vector2(1f, 1f);
+
     }
 
     void FixedUpdate()
     {
-
         jumpWidth = PlayerRB.velocity.magnitude;
 
         if (Input.GetKey("d"))
             //Rechts
         {
-            PlayerRB.AddForce(Vector3.right * Time.deltaTime * PlayerSpeed);
+            PlayerRB.AddForce(Vector3.right * Time.fixedDeltaTime * PlayerSpeed);
 
             if (movingLeft == false)
             {
@@ -72,6 +72,8 @@ public class CharacterMovement : MonoBehaviour
             }
             
         }
+        // Die Geschwindigkeit des Characters darf nur dann ins Negative gewechselt werden, wenn die Geschwindigkeit wieder
+        // einmal Runter gegangen ist.
 
         if (Input.GetKeyUp("d"))
         {
@@ -82,9 +84,9 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKey("a")) 
             //Links
         {
-            PlayerRB.AddForce(Vector3.left * Time.deltaTime * PlayerSpeed);
+            PlayerRB.AddForce(Vector3.left * Time.fixedDeltaTime * PlayerSpeed);
 
-            if (movingRight == false)
+            if (movingRight == false) 
             {
                 movingLeft = true;
 
@@ -127,12 +129,12 @@ public class CharacterMovement : MonoBehaviour
 
         if (Input.GetKeyDown("s"))
         {
-            Player.transform.Translate(Vector3.down * Time.deltaTime * PlayerDownStep);
+            Player.transform.Translate(Vector3.down * Time.fixedDeltaTime * PlayerDownStep);
         }
         // Debug.Log(Vector2)
+        // Debug.Log(jumpWidth);
 
-        // Jump mit dem Rigibody ist weird, besser mit ForceMode.Impulse, aber ist nicht consistent
-        Debug.Log(jumpWidth);
+        // Maximale Geschwindkeit festlegen.
 
     }
 }
