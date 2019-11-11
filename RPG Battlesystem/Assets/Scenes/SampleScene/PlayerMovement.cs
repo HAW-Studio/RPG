@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
                 isMoving = false;
                 encounter = true;
                 loadScene = true;
-                SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
+                SceneManager.LoadScene("BattleScene");
             }
 
             if (Input.GetKey("d"))
@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         if (encounter)
         {
             Debug.Log("ENCOUNTER !!!!");
+            encounter = false;
         }
         
 
@@ -66,13 +67,5 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void LateUpdate()
-    {
-        if (loadScene)
-        {
-            
-            loadScene = false;
-        }
-    }
 
 }
