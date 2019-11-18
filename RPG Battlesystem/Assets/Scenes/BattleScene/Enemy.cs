@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,33 +9,21 @@ public class Enemy : MonoBehaviour
 
     //ATTRIBUTES
 
-    public GameObject enemy;
-    public GameObject messgControl;
 
-    public string name;
-    public int health;
-    public int dmg;
+    public string name = "testt";
+    public int health = 20;
+    public int dmg = 5;
 
     //CONSTRUCTOR
 
-    public Enemy(string name,int health_,int dmg_)
+    public Enemy(string _name,int health_,int dmg_)
     {
+        name = _name;
         health = health_;
         dmg = dmg_;
     }
 
-    //FUNCTIONS
 
-    public void Encounter()
-    {
-        enemy.SetActive(true);
-        messgControl.GetComponent<Text>().text = "An " + name + " has appeared";
 
-    }
-
-    private void Awake()
-    {
-        enemy.SetActive(false);
-    }
 
 }
