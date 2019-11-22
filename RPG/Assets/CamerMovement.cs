@@ -40,7 +40,7 @@ public class CamerMovement : MonoBehaviour
         if (viewPos.x <= 0)
             // Move Left
         {
-            cameraTrans.position += Vector3.left * cmrVerMove;
+            cameraTrans.position += Vector3.left * cmrHorMove;
         }
         if (viewPos.y >= 1.0)
             // Move Up
@@ -48,8 +48,10 @@ public class CamerMovement : MonoBehaviour
             cameraTrans.position += Vector3.up * cmrVerMove;
         }
         if (viewPos.y <= 0)
+            // Move Down
         {
             cameraTrans.position += Vector3.down * cmrVerMove;
         }
+
     }
 }

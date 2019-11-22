@@ -8,7 +8,8 @@ public class CharacterMovement : MonoBehaviour
     private float PlayerJumpHeight = 5f;
     private float PlayerDownStep = 5f;
     private float PlayerSpeed = 400f;
-    private float jumpWidth;
+    private float moveSpeed;
+    private float tempMoveSpeed;
 
     //Rigidbodys
     public Rigidbody2D PlayerRB;
@@ -18,6 +19,7 @@ public class CharacterMovement : MonoBehaviour
     public bool grounded;
     public bool movingRight;
     public bool movingLeft;
+    public bool eingabe;
 
 
 
@@ -58,73 +60,27 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        jumpWidth = PlayerRB.velocity.magnitude;
+        Vector2 moveSpeed = PlayerRB.velocity;
 
         if (Input.GetKey("d"))
             //Rechts
         {
             PlayerRB.AddForce(Vector3.right * Time.fixedDeltaTime * PlayerSpeed);
 
-            if (movingLeft == false)
-            {
-                movingRight = true;
-
-            }
-            
         }
         // Die Geschwindigkeit des Characters darf nur dann ins Negative gewechselt werden, wenn die Geschwindigkeit wieder
         // einmal Runter gegangen ist.
-
-        if (Input.GetKeyUp("d"))
-        {
-            movingRight = false;
-
-        }
-
-        if (Input.GetKey("a")) 
-            //Links
+        if (Input.GetKey("a"))
+        //Links
         {
             PlayerRB.AddForce(Vector3.left * Time.fixedDeltaTime * PlayerSpeed);
-
-            if (movingRight == false) 
-            {
-                movingLeft = true;
-
-                jumpWidth = -jumpWidth;
-
-            }
-
-        }
-        if (Input.GetKeyUp("a"))
-        {
-            movingLeft = false;
-
-            jumpWidth = jumpWidth;
-
         }
 
 
         if (Input.GetKeyDown("space") && grounded)
         {
-            /*PlayerRB.AddForce(Vector3.up * Time.deltaTime * PlayerJumpHeight, ForceMode2D.Impulse);
-            grounded = false;
-            */
-            // isJumping = true;
-            if (jumpWidth < 0)
-            {
-                PlayerRB.velocity = new Vector2(jumpWidth, PlayerJumpHeight);
+            PlayerRB.velocity = new Vector2(moveSpeed.x, PlayerJumpHeight);
 
-
-            }
-            else if (jumpWidth > 0)
-            {
-                PlayerRB.velocity = new Vector2(jumpWidth, PlayerJumpHeight);
-
-            }
-            else if (jumpWidth == 0)
-            {
-                PlayerRB.velocity = new Vector2(PlayerRB.velocity.magnitude, PlayerJumpHeight);
-            }
         }
 
         if (Input.GetKeyDown("s"))
@@ -132,7 +88,8 @@ public class CharacterMovement : MonoBehaviour
             Player.transform.Translate(Vector3.down * Time.fixedDeltaTime * PlayerDownStep);
         }
         // Debug.Log(Vector2)
-        // Debug.Log(jumpWidth);
+        Debug.Log(moveSpeed);
+        Debug.Log(PlayerRB.velocity);
 
         // Maximale Geschwindkeit festlegen.
 
