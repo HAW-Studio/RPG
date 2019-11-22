@@ -9,10 +9,10 @@ public class Enemy : MonoBehaviour
 
     //ATTRIBUTES
 
-
-    public string name = "testt";
-    public int health = 20;
-    public int dmg = 5;
+    public GameObject enemy;
+    private string name;
+    private int health;
+    private int dmg;
 
     //CONSTRUCTOR
 
@@ -23,7 +23,37 @@ public class Enemy : MonoBehaviour
         dmg = dmg_;
     }
 
+    public String GetName()
+    {
+        return name;
+    }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+    public int Getdmg()
+    {
+        return dmg;
+    }
+
+    public void EnemyInfo()
+    {
+        Debug.Log("+++ Enemy Name: " + name + " +++");
+        Debug.Log("        Enemy Health: " + health);
+        Debug.Log("        Enemy Dmg: " + dmg);
+    }
+
+
+
+    public void GetDmg(int dmg)
+    {
+        Debug.Log("Health before:" + health);
+        health -= dmg;
+        Debug.Log("Health after:" + health);
+    }
+
+   
 
 
 }
