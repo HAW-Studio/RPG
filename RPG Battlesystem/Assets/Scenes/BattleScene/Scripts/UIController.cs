@@ -11,7 +11,7 @@ public class UIController : MonoBehaviour
     public Text dmgTxt;
     public AnimationClip dmgAnim;
     private Animation Anim;
-    private Animator a;
+   
 
     
 
@@ -22,7 +22,7 @@ public class UIController : MonoBehaviour
     void Awake()
     {
         Anim = GetComponent<Animation>();
-        //a.Play("DmgAnimation");
+        //a.Play("IdleCharacterAnim");
     }
 
 
