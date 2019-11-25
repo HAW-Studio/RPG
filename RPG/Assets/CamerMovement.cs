@@ -31,7 +31,7 @@ public class CamerMovement : MonoBehaviour
         // und wandelt sie in Kordianten um, die beschreibe wo sich der Transform
         // in der Kamera aufhält.
 
-        Debug.Log("viewPos = " + viewPos);
+        // Debug.Log("viewPos = " + viewPos);
         if (viewPos.x >= 1.0)
             // Move Right
         {
