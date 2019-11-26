@@ -21,10 +21,16 @@ public class CharacterMovement : MonoBehaviour
     public bool movingLeft;
     public bool eingabe;
 
+    //Vector
+    private Vector2 contactPoint;
+    private Vector2 temp;
+    private Vector2 center;
+    private Vector2 test;
+    private Vector2 test2;
 
+    private List<float> con;
 
-    //Collider
-    // public Collider Ground;
+    // Collider
     public EdgeCollider2D endgeGround;
 
     //GameObjects
@@ -32,18 +38,32 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+
         Collider2D collider = collision.collider;
 
-        Vector2 contactPoint = collision.GetContact(1).point;
-        Vector2 temp = collider.bounds.center;
+        // Debug.Log("Anzahl: " + collision.contacts.Length);
+        // Debug.Log(collision.contacts[0].point + " " + collision.contacts[1].point);
+        contactPoint = collision.GetContact(1).point;
 
-        Vector2 center;
-        center = new Vector2(contactPoint.x + temp.x, contactPoint.y + temp.y);
+        // center = new Vector2(contactPoint.x + temp.x, contactPoint.y + temp.y);
 
-        if (center.x > contactPoint.x)
+        center = PlayerRB.transform.localPosition;
+
+        // Debug.Log(Vector2 + " " + collision.contacts[0].normal);
+        Debug.Log(Vector2.Angle(collision.contacts[0].normal, Vector2.right));
+        if (Vector2.Angle(collision.contacts[0].normal, Vector2.right) >= 88 && Vector2.Angle(collision.contacts[0].normal, Vector2.right) <= 92)
         {
             grounded = true;
         }
+        else
+        {
+            grounded = false;
+        }
+
+        //if (center.y > contactPoint.y)
+        //{
+        //    grounded = true;
+        //}
         //Debug.Log(temp);
         //Debug.Log("contactPoint " + contactPoint);
     }
@@ -60,6 +80,14 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        // Debug.Log("center: " + center.y);
+        // Debug.Log("contact: " + contactPoint.y);
+        // Debug.Log("Transfrom: " + PlayerRB.transform.localPosition.y);
+
+        // Debug.Log(temp);
+
+
         Vector2 moveSpeed = PlayerRB.velocity;
 
         if (Input.GetKey("d"))
@@ -68,14 +96,12 @@ public class CharacterMovement : MonoBehaviour
             PlayerRB.AddForce(Vector3.right * Time.fixedDeltaTime * PlayerSpeed);
 
         }
-        // Die Geschwindigkeit des Characters darf nur dann ins Negative gewechselt werden, wenn die Geschwindigkeit wieder
-        // einmal Runter gegangen ist.
+
         if (Input.GetKey("a"))
         //Links
         {
             PlayerRB.AddForce(Vector3.left * Time.fixedDeltaTime * PlayerSpeed);
         }
-
 
         if (Input.GetKeyDown("space") && grounded)
         {
@@ -88,10 +114,10 @@ public class CharacterMovement : MonoBehaviour
             Player.transform.Translate(Vector3.down * Time.fixedDeltaTime * PlayerDownStep);
         }
         // Debug.Log(Vector2)
-        Debug.Log(moveSpeed);
-        Debug.Log(PlayerRB.velocity);
+        // Debug.Log(moveSpeed);
+        // Debug.Log(PlayerRB.velocity);
 
         // Maximale Geschwindkeit festlegen.
-
+     
     }
 }
