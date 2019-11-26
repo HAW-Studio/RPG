@@ -9,59 +9,39 @@ public class UIController : MonoBehaviour
 
     public GameObject txtActivator; 
     public Text dmgTxt;
-    public AnimationClip dmgAnim;
-    private Animation Anim;
-   
-
+    public Text chaDmgTxt;
+    public Animator animator;
+    public bool playerGotDmg;
+    public bool enemyGotDmg;
     
 
     Enemy test = new Enemy("test", 10, 2);
 
     //METHODS
 
-    void Awake()
+
+    private void LateUpdate()
     {
-        Anim = GetComponent<Animation>();
-        //a.Play("IdleCharacterAnim");
+        animator.SetBool("GotDmg", playerGotDmg);
     }
 
-
-
-    public void TestAnim()
+    public void PlayerDmgAnim()
     {
-        Anim.Play(dmgAnim.name);
+        chaDmgTxt.text = "- "+ test.Getdmg().ToString();
+        playerGotDmg = true;
     }
 
-
-    public void DmgAnim(bool enm)
+    public void EnemyDmgAnim()
     {
-        if (enm)
-        {
-            dmgTxt.rectTransform.position.Set(200f, 38.8f, 0f);
-            dmgTxt.text = GameObject.Find("Player").GetComponent<Player>().dmg.ToString();
-            txtActivator.SetActive(true);
-            //Anim.Play(dmgAnim.name);
-            //txtActivator.SetActive(false);
-        }
-        if(!enm)
-        {
-            dmgTxt.rectTransform.position.Set(-255.7f, 20f, 0f);
-            dmgTxt.text = test.Getdmg().ToString();
-            txtActivator.SetActive(true);
-            Anim.Play(dmgAnim.name);
-            txtActivator.SetActive(false);
-        }
-
-
-        
+        dmgTxt.text = "- " + GameObject.Find("Player").GetComponent<Player>().dmg.ToString();
+        enemyGotDmg = true;
     }
-
-
 
 
     void Start()
     {
-        //DmgAnim(false);
+        PlayerDmgAnim();
     }
+    
 
 }

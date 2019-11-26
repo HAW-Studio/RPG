@@ -539,9 +539,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0cad31f22341147b9a6157ce007a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txtActivator: {fileID: 1840062882}
-  dmgTxt: {fileID: 720273205}
-  dmgAnim: {fileID: 7400000, guid: 9fe4365978a41d94296cfd079592ce86, type: 2}
+  txtActivator: {fileID: 0}
+  dmgTxt: {fileID: 1082326225}
+  chaDmgTxt: {fileID: 720273205}
+  animator: {fileID: 720273204}
+  gotDmg: 0
 --- !u!4 &571751752
 Transform:
   m_ObjectHideFlags: 0
@@ -736,7 +738,7 @@ Animator:
   m_GameObject: {fileID: 660167544}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 37e4fcb015017de40a6e8db0f198d1b2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2b3f649c0e1fe864c89cf9f7e8248480, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -776,12 +778,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1417990934}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -247.7, y: 10}
-  m_SizeDelta: {x: 65.05, y: 40.19}
+  m_AnchoredPosition: {x: -246, y: 15.000259}
+  m_SizeDelta: {x: 65.100006, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &720273204
 Animator:
@@ -793,7 +795,7 @@ Animator:
   m_GameObject: {fileID: 720273202}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 37e4fcb015017de40a6e8db0f198d1b2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5cb48586ae93fec4cb4aa28dff26dab1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1009,7 +1011,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1417990934}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1272,7 +1274,6 @@ RectTransform:
   - {fileID: 1914207723}
   - {fileID: 1619714748}
   - {fileID: 380731962}
-  - {fileID: 1840062883}
   - {fileID: 1082326228}
   - {fileID: 720273203}
   m_Father: {fileID: 0}
@@ -1495,36 +1496,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619714747}
   m_CullTransparentMesh: 0
---- !u!1 &1840062882
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1840062883}
-  m_Layer: 0
-  m_Name: DmgTextActivator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1840062883
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840062882}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.403673, y: 70.69012, z: -3679.9702}
-  m_LocalScale: {x: 32.92876, y: 32.92876, z: 32.92876}
-  m_Children: []
-  m_Father: {fileID: 1417990934}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1868058997
 GameObject:
   m_ObjectHideFlags: 0
