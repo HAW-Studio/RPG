@@ -39,9 +39,8 @@ public class Battlescript : MonoBehaviour
 
     void Start()
     {
-        //Encounter(test);
-        //test.GetDmg(GameObject.Find("Player").GetComponent<Player>().dmg);
-        //test.EnemyInfo();
+        Encounter(test);
+        test.EnemyInfo();
 
         
     }
