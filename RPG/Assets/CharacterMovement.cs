@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour
     private float PlayerJumpHeight = 5f;
     private float PlayerDownStep = 5f;
     private float PlayerSpeed = 400f;
+    public float maxSpeed = 5f;
     private float moveSpeed;
     private float tempMoveSpeed;
 
@@ -48,17 +49,23 @@ public class CharacterMovement : MonoBehaviour
         // center = new Vector2(contactPoint.x + temp.x, contactPoint.y + temp.y);
 
         center = PlayerRB.transform.localPosition;
+        foreach (ContactPoint2D myContact in collision.contacts)
+        {
+            if (Vector2.Angle(myContact.normal, Vector2.right) >= 88 && Vector2.Angle(myContact.normal, Vector2.right) <= 92)
+            {
+                grounded = true;
+            }
+            else
+            {
+                grounded = false;
+                
+            }
+            // Debug.Log(contact.normal);
+        }
 
         // Debug.Log(Vector2 + " " + collision.contacts[0].normal);
-        Debug.Log(Vector2.Angle(collision.contacts[0].normal, Vector2.right));
-        if (Vector2.Angle(collision.contacts[0].normal, Vector2.right) >= 88 && Vector2.Angle(collision.contacts[0].normal, Vector2.right) <= 92)
-        {
-            grounded = true;
-        }
-        else
-        {
-            grounded = false;
-        }
+        // Debug.Log(Vector2.Angle(collision.contacts[1].normal, Vector2.right));
+        // Debug.Log(collision.contacts[0].normal);
 
         //if (center.y > contactPoint.y)
         //{
@@ -73,6 +80,10 @@ public class CharacterMovement : MonoBehaviour
         grounded = false;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+    }
+
     void Start()
     {
 
@@ -81,6 +92,14 @@ public class CharacterMovement : MonoBehaviour
     void FixedUpdate()
     {
 
+        if (grounded == true)
+        {
+            isJumping = false;
+        }
+        else
+        {
+            isJumping = true;
+        }
         // Debug.Log("center: " + center.y);
         // Debug.Log("contact: " + contactPoint.y);
         // Debug.Log("Transfrom: " + PlayerRB.transform.localPosition.y);
@@ -90,23 +109,39 @@ public class CharacterMovement : MonoBehaviour
 
         Vector2 moveSpeed = PlayerRB.velocity;
 
+
         if (Input.GetKey("d"))
             //Rechts
         {
-            PlayerRB.AddForce(Vector3.right * Time.fixedDeltaTime * PlayerSpeed);
-
+            if (moveSpeed.x <= maxSpeed)
+            {
+                PlayerRB.AddForce(Vector3.right * Time.fixedDeltaTime * PlayerSpeed);
+                if(moveSpeed.x >= maxSpeed)
+                {
+                    moveSpeed.x = maxSpeed;
+                }
+            }
         }
 
         if (Input.GetKey("a"))
         //Links
         {
+            if (Mathf.Abs(moveSpeed.x) >= maxSpeed)
+            {
+                PlayerRB.AddForce(Vector3.right * Time.fixedDeltaTime * PlayerSpeed);
+                if(moveSpeed.x <= -maxSpeed)
+                {
+                    moveSpeed.x = -maxSpeed;
+                }
+            }
+
             PlayerRB.AddForce(Vector3.left * Time.fixedDeltaTime * PlayerSpeed);
         }
 
         if (Input.GetKeyDown("space") && grounded)
         {
             PlayerRB.velocity = new Vector2(moveSpeed.x, PlayerJumpHeight);
-
+            // grounded = false;
         }
 
         if (Input.GetKeyDown("s"))
@@ -114,7 +149,7 @@ public class CharacterMovement : MonoBehaviour
             Player.transform.Translate(Vector3.down * Time.fixedDeltaTime * PlayerDownStep);
         }
         // Debug.Log(Vector2)
-        // Debug.Log(moveSpeed);
+        Debug.Log(moveSpeed);
         // Debug.Log(PlayerRB.velocity);
 
         // Maximale Geschwindkeit festlegen.
